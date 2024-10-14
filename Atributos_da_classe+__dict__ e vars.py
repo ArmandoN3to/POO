@@ -1,5 +1,6 @@
 class Pessoa:
-    ano_atual = 2024
+    ano_atual = 2024  #Atributo de CLASSE
+
     def __init__(self,nome,idade):
         self.nome =nome
         self.idade = idade
@@ -7,7 +8,7 @@ class Pessoa:
     def get_ano_nascimento(self):
         return print(f'O ano de nascimento do(a) {self.nome} = {Pessoa.ano_atual - self.idade}')
     
-
+print(Pessoa.ano_atual)
 
 dados ={'nome': 'Armando', 'idade': 21, 'Cabelo': 'Enrolado'}  
 
