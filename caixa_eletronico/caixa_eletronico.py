@@ -12,7 +12,7 @@ try:
         print('5 - Mostrar informaçoes da conta')
         print('6 - Sair')
         print('='*40)
-
+    
         opcao = int(input('Digite sua opcao: '))
 
         if opcao == 6:

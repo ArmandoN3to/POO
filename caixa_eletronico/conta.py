@@ -47,8 +47,8 @@ class Conta:
             print(f'Voce fez uma transferencia de {transferencia} para a conta: {conta_transferencia} / DATA : {Conta.data_formatada} HORA: {Conta.hora_formatada}')
             
     def mostrar_informacoes(self):
-        print(f"ID: {self.id}")
-        print(f"Numero: {self.numero}")
+        print(f"ID: {self.id}")             #id faz parte da classe movimentaçao chamar ele
+        print(f"Numero: {self.numero}")             #Ajustar essa parte
         print(f"CPF: {self.cpf}")
         print(f"Nome: {self.nome}")
         print(f"Saldo: {self.saldo}")
