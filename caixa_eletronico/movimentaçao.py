@@ -25,14 +25,11 @@ class Movimentacao:
             case 2 :
                 valor= float(input("Digite o valor do deposito: "))
                 self.conta.depositar(valor)
+            case 3:
+                valor = float(input("Digite o valor da tranferencia: "))
+                self.conta.transferir(valor)
 
-teste = Movimentacao('Armando','06044526240',400.00,'1234')
-print('='*40)
-print('1 - Saque')
-print('2 - deposito')
-operacao = int(input('digite sua opcao: '))
-print('='*40)
-teste.operacao(operacao)
+
 
         
 
