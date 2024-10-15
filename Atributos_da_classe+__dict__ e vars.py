@@ -8,7 +8,9 @@ class Pessoa:
     def get_ano_nascimento(self):
         return print(f'O ano de nascimento do(a) {self.nome} = {Pessoa.ano_atual - self.idade}')
     
-print(Pessoa.ano_atual)  #chamando atributo de classe
+    
+print(Pessoa.ano_atual)  #chamando o atributo de classe
+
 
 dados ={'nome': 'Armando', 'idade': 21, 'Cabelo': 'Enrolado'}  
 
@@ -19,8 +21,8 @@ p2 = Pessoa("Vitoria",24)
 p2.get_ano_nascimento()
 
 # p1.__dict__['nome'] = 'Carlos'
-# p1.__dict__['Cabelo'] = 'Enrolado'
-# p2.__dict__['Cabelo'] = 'Liso'
+p1.__dict__['Cabelo'] = 'Enrolado'
+p2.__dict__['Cabelo'] = 'Liso'
 
-print(p1.__dict__)
+# print(p1.__dict__)
 print(dados['Cabelo'])

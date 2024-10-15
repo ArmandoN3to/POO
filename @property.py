@@ -2,11 +2,14 @@ class Caneta:
     def __init__(self,cor):
         self.cor_tinta = cor
 
-    @property  #faz com que o metodo se comporte como uma instancia
+    @property  #é uma propriedade do objeto e, é um metodo que se comporta com atributo   
     def cor(self):
         print("Property")
         return self.cor_tinta #fez um metodo se comportar como uma instancia
     
+    # @cor.setter
+    # def cor(self):
+
     def get_cor(self):              #getter Padrao
         print("Getter padrao")
         return self.cor_tinta
