@@ -1,4 +1,5 @@
 from datetime import datetime
+from movimentacao import Movimentacao
 
 class Conta:
     data_hora_atual = datetime.now()
@@ -44,10 +45,12 @@ class Conta:
             print(f'Voce nao pode fazer uma tranferencia negativa / DATA : {Conta.data_formatada} HORA: {Conta.hora_formatada}')
         else:
             conta_transferencia= input("Digite o numero da conta que voce deseja fazer a transferencia: ")
-            print(f'Voce fez uma transferencia de {transferencia} para a conta: {conta_transferencia} / DATA : {Conta.data_formatada} HORA: {Conta.hora_formatada}')
+            print(f'Voce fez uma transferencia de {transferencia} para a conta: {conta_transferencia} id da transaçao: {Movimentacao.id}/ DATA : {Conta.data_formatada} HORA: {Conta.hora_formatada}')
             
-    def mostrar_informacoes(self):
-        print(f"ID: {self.id}")             #id faz parte da classe movimentaçao chamar ele   # ID É DA TRANSAÇAO AJUSTAR
+    def retornar_cpf(self):
+        return Movimentacao.id
+        
+    def mostrar_informacoes(self):             
         print(f"Numero: {self.numero}")             #Ajustar essa parte
         print(f"CPF: {self.cpf}")
         print(f"Nome: {self.nome}")

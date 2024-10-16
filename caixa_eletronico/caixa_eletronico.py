@@ -1,4 +1,4 @@
-from movimentaçao import Movimentacao
+from movimentacao import Movimentacao
 
 try:
     p1 = Movimentacao('Armando','06044526240',400.00,'1234')
