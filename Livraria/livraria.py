@@ -1,4 +1,49 @@
+class Autor:
+    def __init__(self,nome:str,nacionalidade:str):
+        self.__nome = nome
+        self.__nacionalidade = nacionalidade
+
+    @property        
+    def nome(self):                      
+        return self.__nome
+    @nome.setter
+    def nome(self,novo_nome):
+        self.__nome = novo_nome
+
+    @property        
+    def nacionalidade(self):                       
+        return self.__nacionalidade
+    @nacionalidade.setter
+    def nacionalidade(self,novo_nacionalidade):
+        self.__nacionalidade = novo_nacionalidade
+
+    def mostrar_info(self):
+        return f'nome: {self.nome} nacionalidade: {self.nacionalidade}'
+    
+class Leitor:
+    def __init__(self,nome:str,idade:int):
+        self.__nome =nome
+        self.__idade = idade
+
+    @property        
+    def nome(self):                      
+        return self.__nome
+    @nome.setter
+    def nome(self,novo_nome):
+        self.__nome = novo_nome
+
+    @property        
+    def idade(self):                       
+        return self.__idade
+    @idade.setter
+    def idade(self,novo_idade):
+        self.__idade = novo_idade
+
+    def mostrar_info(self):
+        return f'nome: {self.nome} idade: {self.idade}'
+        
 class Livro:
+
     def __init__(self, titulo, autor):
         self.__titulo = titulo
         self.__autor = autor
@@ -48,8 +93,9 @@ class Livro:
 
 
 class Biblioteca:
-    def __init__(self):
+    def __init__(self,):
         self.livros = []
+        self.emprestimos = []
 
     def adicionar_livro(self, titulo, autor):
         novo_livro = Livro(titulo, autor)
