@@ -1,138 +1,211 @@
 class Autor:
-    def __init__(self,nome:str,nacionalidade:str):
+    def __init__(self, nome, nacionalidade):
         self.__nome = nome
         self.__nacionalidade = nacionalidade
 
-    @property        
-    def nome(self):                      
+    @property
+    def nome(self):
         return self.__nome
-    @nome.setter
-    def nome(self,novo_nome):
-        self.__nome = novo_nome
 
-    @property        
-    def nacionalidade(self):                       
+    @nome.setter
+    def nome(self, value):
+        self.__nome = value
+
+    @property
+    def nacionalidade(self):
         return self.__nacionalidade
+
     @nacionalidade.setter
-    def nacionalidade(self,novo_nacionalidade):
-        self.__nacionalidade = novo_nacionalidade
+    def nacionalidade(self, value):
+        self.__nacionalidade = value
+
 
     def mostrar_info(self):
-        return f'nome: {self.nome} nacionalidade: {self.nacionalidade}'
-    
-class Leitor:
-    def __init__(self,nome:str,idade:int):
-        self.__nome =nome
-        self.__idade = idade
+        return f"Autor: {self.nome}, Nacionalidade: {self.nacionalidade}"
 
-    @property        
-    def nome(self):                      
-        return self.__nome
-    @nome.setter
-    def nome(self,novo_nome):
-        self.__nome = novo_nome
 
-    @property        
-    def idade(self):                       
-        return self.__idade
-    @idade.setter
-    def idade(self,novo_idade):
-        self.__idade = novo_idade
-
-    def mostrar_info(self):
-        return f'nome: {self.nome} idade: {self.idade}'
-        
 class Livro:
-
-    def __init__(self, titulo, autor):
+    def __init__(self, titulo, isbn, ano_publicacao):
         self.__titulo = titulo
-        self.__autor = autor
-        self.__disponivel = True
+        self.__isbn = isbn
+        self.__ano_publicacao = ano_publicacao
+        self.__autores = []
 
-    @property        
-    def titulo(self):                       #tem que vir antes dos metodos os getters e os setters
+    @property
+    def titulo(self):
         return self.__titulo
-    
+
     @titulo.setter
-    def titulo(self,novo_titulo):
-        self.__titulo = novo_titulo
-    
+    def titulo(self, value):
+        self.__titulo = value
+
     @property
-    def autor(self):
-        return self.__autor
-    
-    @autor.setter
-    def autor(self,novo_autor):
-        self.__autor = novo_autor
-    
+    def isbn(self):
+        return self.__isbn
+
+    @isbn.setter
+    def isbn(self, value):
+        self.__isbn = value
+
     @property
-    def disponivel(self):
-        return self.__disponivel
+    def ano_publicacao(self):
+        return self.__ano_publicacao
+
+    @ano_publicacao.setter
+    def ano_publicacao(self, value):
+        self.__ano_publicacao = value
+
+    @property
+    def autores(self):
+        return  self.__autores
     
-    @disponivel.setter
-    def disponivel(self,novo_disponivel):
-        self.__disponivel= novo_disponivel    
+    @autores.setter
+    def autores(self,value):
+        self.__autores=value
 
-    def emprestar(self):
-        if self.disponivel:         #CHECAR SE AS VARIAVEIS ESTAO NO TIPO PROPERTY
-            self.disponivel = False
-            print(f"O livro '{self.titulo}' foi emprestado com sucesso.")
-        else:
-            print(f"O livro '{self.titulo}' já está emprestado.")
+    def adicionar_autor(self, autor):
+        self.autores.append(autor)
 
-    def devolver(self):
-        if not self.disponivel:
-            self.disponivel = True
-            print(f"O livro '{self.titulo}' foi devolvido.")
-        else:
-            print(f"O livro '{self.titulo}' já estava disponível.")
+    def mostrar_info(self):
+        autores_info = ', '.join([autor.nome for autor in self.autores])
+        return f"Título: {self.titulo}, ISBN: {self.isbn}, Ano de Publicação: {self.ano_publicacao}, Autores: {autores_info}"
 
-    def mostrar_disponibilidade(self):
-        status = "disponível" if self.disponivel else "emprestado"
-        print(f"'{self.titulo}' de {self.autor} está {status}.")
+
+class Leitor:
+    def __init__(self, nome, idade):
+        self.__nome = nome
+        self.__idade = idade
+        self.historico_emprestimos=[]
+
+    @property
+    def nome(self):
+        return self.__nome
+
+    @nome.setter
+    def nome(self, value):
+        self.__nome = value
+
+    @property
+    def idade(self):
+        return self.__idade
+
+    @idade.setter
+    def idade(self, value):
+        self.__idade = value
+
+        self.historico_emprestimos = []
+
+    def mostrar_info(self):
+        return f"Leitor: {self.nome}, Idade: {self.idade}"
+
+    def adicionar_emprestimo(self, emprestimo):
+        self.historico_emprestimos.append(emprestimo)
+
+
+class Emprestimo:
+    def __init__(self, leitor, livro, data_emprestimo, data_devolucao=None):
+        self.__leitor = leitor
+        self.__livro = livro
+        self.__data_emprestimo = data_emprestimo
+        self.__data_devolucao = data_devolucao
+
+    @property
+    def leitor(self):
+        return self.__leitor
+
+    @leitor.setter
+    def leitor(self, value):
+        self.__leitor = value
+
+    @property
+    def livro(self):
+        return self.__livro
+
+    @livro.setter
+    def livro(self, value):
+        self.__livro = value
+
+    @property
+    def data_emprestimo(self):
+        return self.__data_emprestimo
+
+    @data_emprestimo.setter
+    def data_emprestimo(self, value):
+        self.__data_emprestimo = value
+
+    @property
+    def data_devolucao(self):
+        return self.__data_devolucao
+
+    @data_devolucao.setter
+    def data_devolucao(self, value):
+        self.__data_devolucao = value
+
+    def mostrar_info(self):
+        devolucao_info = self.data_devolucao if self.data_devolucao else "Não devolvido"
+        return (f"Leitor: {self.leitor.nome}, Livro: {self.livro.titulo}, "
+                f"Data de Empréstimo: {self.data_emprestimo}, Data de Devolução: {devolucao_info}")
 
 
 class Biblioteca:
-    def __init__(self,):
+    def __init__(self)->None:
         self.livros = []
         self.emprestimos = []
 
-    def adicionar_livro(self, titulo, autor):
-        novo_livro = Livro(titulo, autor)
-        self.livros.append(novo_livro)
-        print(f"Livro '{titulo}' de {autor} foi adicionado ao acervo.")
+    def adicionar_livro(self, livro):
+        self.livros.append(livro)
 
-    def emprestar_livro(self, titulo):
-        for livro in self.livros:
-            if livro.titulo == titulo:
-                livro.emprestar()
-                return
-        print(f"Livro '{titulo}' não encontrado no acervo.")
+    def realizar_emprestimo(self, livro, leitor, data_emprestimo):
+        if livro in self.livros:
+            if len(leitor.historico_emprestimos) < 3:
+                emprestimo = Emprestimo(leitor, livro, data_emprestimo)
+                self.emprestimos.append(emprestimo)
+                leitor.adicionar_emprestimo(emprestimo)
+                self.livros.remove(livro)
+                return True
+            else:
+                print("O leitor já possui o máximo de 3 livros emprestados.")
+        else:
+            print("O livro não está disponível para empréstimo.")
+        return False
 
-    def devolver_livro(self, titulo):
-        for livro in self.livros:
-            if livro.titulo == titulo:
-                livro.devolver()
-                return
-        print(f"Livro '{titulo}' não encontrado no acervo.")
+    def devolver_livro(self, emprestimo, data_devolucao):
+        emprestimo.data_devolucao = data_devolucao
+        self.livros.append(emprestimo.livro)
 
-    def mostrar_inventario(self):
-        print("\nInventário da Biblioteca:")
-        for livro in self.livros:
-            livro.mostrar_disponibilidade()
-        print("-" * 40)
+    def mostrar_emprestimos(self):
+        return [emprestimo.mostrar_info() for emprestimo in self.emprestimos]
+
+    def mostrar_livros(self):
+        return [livro.mostrar_info() for livro in self.livros]
+
+    def relatorio(self):
+        total_emprestados = len(self.emprestimos)
+        total_disponiveis = len(self.livros)
+        return f"Total de livros emprestados: {total_emprestados}, Total de livros disponíveis: {total_disponiveis}"
+
+
+autor1 = Autor("George Orwell", "Britânico")
+autor2 = Autor("Aldous Huxley", "Britânico")
+
+livro1 = Livro("1984", "123456789", 1949)
+livro1.adicionar_autor(autor1)
+livro1.adicionar_autor(autor2)
+
+livro2 = Livro("Admirável Mundo Novo", "987654321", 1932)
+livro2.adicionar_autor(autor2)
+
+leitor1 = Leitor("João", 25)
+leitor2 = Leitor("Maria", 30)
 
 biblioteca = Biblioteca()
+biblioteca.adicionar_livro(livro1)
+biblioteca.adicionar_livro(livro2)
 
-biblioteca.adicionar_livro("Dom Quixote", "Miguel de Cervantes")
-biblioteca.adicionar_livro("1984", "George Orwell")
-biblioteca.adicionar_livro("A Revolução dos Bichos", "George Orwell")
+biblioteca.realizar_emprestimo(livro1, leitor1, "2024-10-21")
+biblioteca.realizar_emprestimo(livro2, leitor2, "2024-10-21")
+biblioteca.realizar_emprestimo(livro2, leitor2, "2024-10-21")
 
-biblioteca.mostrar_inventario()
-
-biblioteca.emprestar_livro("1984")
-biblioteca.emprestar_livro("A Revolução dos Bichos")
-biblioteca.mostrar_inventario()
-
-biblioteca.devolver_livro("1984")
-biblioteca.mostrar_inventario()
+print(biblioteca.mostrar_emprestimos())
+print(biblioteca.mostrar_livros())
+print(biblioteca.relatorio())
